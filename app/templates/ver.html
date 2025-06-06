@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+    <title>Document</title>
+
+{% endblock %}
+
+{% block body %}
+
+  <div class="container mt-5">
+    <h1 class="mb-4 text-center">Criar novo artigo</h1>
+
+    <form action="/editar/{{artigo.id}}" method="POST">
+      <div class="mb-3">
+        <label for="titulo" class="form-label">Título</label>
+        <input type="text" class="form-control" id="titulo" name="titulo" value="{{artigo.title}}" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="descricao" class="form-label">Descrição</label>
+        <textarea class="form-control" id="descricao" name="descricao" rows="2" required>{{artigo.description}}</textarea>
+      </div>
+
+      <div class="mb-3">
+        <label for="conteudo" class="form-label">Conteúdo</label>
+        <textarea class="form-control" id="conteudo" name="conteudo" rows="6" required>{{artigo.content}}</textarea>
+      </div>
+
+      <button type="submit" class="btn btn-success">Editar artigo</button>
+    </form>
+    <button onclick="window.location.href='/excluir/{{artigo.id}}'" class="btn btn-danger mt-3">Excluir artigo</button>
+  </div>
+
+{% endblock %}

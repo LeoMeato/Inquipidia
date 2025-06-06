@@ -27,6 +27,7 @@
 
 {% for artigo in artigos %}
 
+<a href="/ver/{{artigo.id}}" style="text-decoration: none; color: inherit;">
   <div class="container py-3">
     <div class="row">
       <div class="col-6 mx-auto">
@@ -39,6 +40,7 @@
       </div>
     </div>
   </div>
+</a>
 
 {% endfor %}
 

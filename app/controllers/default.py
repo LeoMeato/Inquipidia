@@ -16,3 +16,24 @@ def criar():
         return redirect("/")
     else:
         return render_template("criar.html")
+    
+@app.route("/ver/<int:id>", methods=["GET"])
+def ver(id):
+    artigo = Article.query.get_or_404(id)
+    return render_template("ver.html", artigo=artigo)
+
+@app.route("/editar/<int:id>", methods=["POST"])
+def editar(id):
+    artigo = Article.query.get_or_404(id)
+    artigo.title = request.form['titulo']
+    artigo.description = request.form['descricao']
+    artigo.title = request.form['titulo']
+    db.session.commit()
+    return redirect("/")
+
+@app.route("/excluir/<int:id>")
+def excluir(id):
+    artigo = Article.query.get_or_404(id)
+    db.session.delete(artigo)
+    db.session.commit()
+    return redirect("/")
