@@ -4,7 +4,11 @@ from app.models.tables import *
 
 @app.route("/")
 def index():
-    artigos = Article.query.limit(10).all()
+    search = request.args.get('search', '')
+    if search:
+        artigos = Article.query.filter(Article.title.ilike(f"%{search}%")).all()
+    else:
+        artigos = Article.query.limit(10).all()
     return render_template("index.html", artigos=artigos)
 
 @app.route("/criar", methods=["GET", "POST"])
