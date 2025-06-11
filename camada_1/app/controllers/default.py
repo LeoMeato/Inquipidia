@@ -35,10 +35,10 @@ def editar(id, url):
     artigo['titulo'] = request.form['titulo']
     artigo['descricao'] = request.form['descricao']
     artigo['conteudo'] = request.form['conteudo']
-    response = requests.post(unquote(url), json=artigo)
+    response = requests.put(unquote(url), json=artigo)
     return redirect("/")
 
 @app.route("/excluir/<int:id>/<path:url>")
 def excluir(id, url):
-    response = requests.post(unquote(url))
+    response = requests.delete(unquote(url))
     return redirect("/")
