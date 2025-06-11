@@ -12,9 +12,9 @@ def index():
         artigos = Article.query.limit(10).all()
     f_artigos = []
     for a in artigos:
-        f_artigos.append({"id": a.id, "title": a.title, "description": a.description, "url": quote(f"http://127.0.0.1:8080/artigo/{a.id}")})
+        f_artigos.append({"id": a.id, "title": a.title, "description": a.description, "url": f"http://127.0.0.1:8080/artigo/{a.id}"})
     dados = {}
-    dados["criar"] = {"url": quote("http://127.0.0.1:8080/artigo")}
+    dados["criar"] = {"url": "http://127.0.0.1:8080/artigo"}
     dados["artigos"] = f_artigos
     return jsonify(dados)
 
@@ -25,7 +25,7 @@ def artigo(id=None):
     if request.method == "GET":
         artigo = Article.query.get_or_404(id)
         dados = {}
-        dados["artigo"] = {"title": artigo.title, "description": artigo.description, "content": artigo.content, "url": quote(f"http://127.0.0.1:8080/artigo/{artigo.id}")}
+        dados["artigo"] = {"title": artigo.title, "description": artigo.description, "content": artigo.content, "url": f"http://127.0.0.1:8080/artigo/{artigo.id}"}
         return jsonify(dados)
     if request.method == "PUT":
         dados = request.get_json()

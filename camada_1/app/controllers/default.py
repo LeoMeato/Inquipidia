@@ -17,14 +17,14 @@ def index():
 def criar(url):
     if request.method == "POST":
         novo_artigo = {"titulo": request.form['titulo'], "descricao": request.form["descricao"], "conteudo": request.form["conteudo"]}
-        response = requests.post(unquote(url), json=novo_artigo)
+        response = requests.post(url, json=novo_artigo)
         return redirect("/")
     else:
         return render_template("criar.html", url=url)
     
 @app.route("/ver/<int:id>/<path:url>", methods=["GET"])
 def ver(id, url):
-    response = requests.get(unquote(url))
+    response = requests.get(url)
     dados = response.json()
     dados["artigo"]["id"] = id
     return render_template("ver.html", dados=dados)
@@ -35,10 +35,10 @@ def editar(id, url):
     artigo['titulo'] = request.form['titulo']
     artigo['descricao'] = request.form['descricao']
     artigo['conteudo'] = request.form['conteudo']
-    response = requests.put(unquote(url), json=artigo)
+    response = requests.put(url, json=artigo)
     return redirect("/")
 
 @app.route("/excluir/<int:id>/<path:url>")
 def excluir(id, url):
-    response = requests.delete(unquote(url))
+    response = requests.delete(url)
     return redirect("/")
