@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block head %}
+
+<title>Document</title>
+
+{% endblock %} {% block body %}
+
+<div class="container py-">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <div
+        class="p-4 mb-2 bg-light rounded-3 border border-primary border-3 text-center"
+      >
+        <div class="container-fluid">
+          <h1 class="h3 fw-bold">Interessado em contribuir?</h1>
+          <button
+            class="btn btn-primary btn-sm mt-3"
+            type="button"
+            onclick="window.location.href='/criar/{{criar['url']}}'"
+          >
+            Criar novo artigo
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% for artigo in artigos %}
+
+<a href="/ver/{{artigo['id']}}/{{artigo['url']}}" style="text-decoration: none; color: inherit;">
+  <div class="container py-3">
+    <div class="row">
+      <div class="col-6 mx-auto">
+        <div class="p-4 mb-2 bg-light rounded-3 border border-primary border-3 text-center">
+          <div class="container-fluid">
+            <h1 class="h3 fw-bold">{{artigo['title']}}</h1>
+            <p class="mt-2 mb-0 text-muted">{{artigo['description']}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</a>
+
+{% endfor %}
+
+{% endblock %}
