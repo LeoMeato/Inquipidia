@@ -29,21 +29,21 @@ def artigo(id=None):
         return jsonify(dados)
     if request.method == "PUT":
         dados = request.get_json()
-        titulo = dados.get("titulo")
-        descricao = dados.get("descricao")
-        conteudo = dados.get("conteudo")
+        title = dados.get("title")
+        description = dados.get("description")
+        content = dados.get("content")
         artigo = Article.query.get_or_404(id)
-        artigo.title = titulo
-        artigo.description = descricao
-        artigo.content = conteudo
+        artigo.title = title
+        artigo.description = description
+        artigo.content = content
         db.session.commit()
         return jsonify({})
     if request.method == "POST":
         dados = request.get_json()
-        titulo = dados.get("titulo")
-        descricao = dados.get("descricao")
-        conteudo = dados.get("conteudo")
-        novo_artigo = Article(titulo, descricao, conteudo)
+        title = dados.get("title")
+        description = dados.get("description")
+        content = dados.get("content")
+        novo_artigo = Article(title, description, content)
         db.session.add(novo_artigo)
         db.session.commit()
         return jsonify({})

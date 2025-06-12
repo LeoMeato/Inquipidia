@@ -13,18 +13,18 @@
 
     <form action="/editar/{{dados["artigo"]["id"]}}/{{dados["artigo"]["url"]}}" method="POST">
       <div class="mb-3">
-        <label for="titulo" class="form-label">Título</label>
-        <input type="text" class="form-control" id="titulo" name="titulo" value="{{dados["artigo"]["title"]}}" required>
+        <label for="title" class="form-label">Título</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{dados["artigo"]["title"]}}" required>
       </div>
 
       <div class="mb-3">
-        <label for="descricao" class="form-label">Descrição</label>
-        <textarea class="form-control" id="descricao" name="descricao" rows="2" required>{{dados["artigo"]["description"]}}</textarea>
+        <label for="description" class="form-label">Descrição</label>
+        <textarea class="form-control" id="description" name="description" rows="2" required>{{dados["artigo"]["description"]}}</textarea>
       </div>
 
       <div class="mb-3">
-        <label for="conteudo" class="form-label">Conteúdo</label>
-        <textarea class="form-control" id="conteudo" name="conteudo" rows="6" required>{{dados["artigo"]["content"]}}</textarea>
+        <label for="content" class="form-label">Conteúdo</label>
+        <textarea class="form-control" id="content" name="content" rows="6" required>{{dados["artigo"]["content"]}}</textarea>
       </div>
 
       <button type="submit" class="btn btn-success">Editar artigo</button>

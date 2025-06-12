@@ -16,7 +16,7 @@ def index():
 @app.route("/criar/<path:url>", methods=["GET", "POST"])
 def criar(url):
     if request.method == "POST":
-        novo_artigo = {"titulo": request.form['titulo'], "descricao": request.form["descricao"], "conteudo": request.form["conteudo"]}
+        novo_artigo = {"title": request.form['title'], "description": request.form["description"], "content": request.form["content"]}
         response = requests.post(url, json=novo_artigo)
         return redirect("/")
     else:
@@ -32,9 +32,9 @@ def ver(id, url):
 @app.route("/editar/<int:id>/<path:url>", methods=["POST"])
 def editar(id, url):
     artigo = {}
-    artigo['titulo'] = request.form['titulo']
-    artigo['descricao'] = request.form['descricao']
-    artigo['conteudo'] = request.form['conteudo']
+    artigo['title'] = request.form['title']
+    artigo['description'] = request.form['description']
+    artigo['content'] = request.form['content']
     response = requests.put(url, json=artigo)
     return redirect("/")
 
