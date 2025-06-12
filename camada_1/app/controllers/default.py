@@ -1,6 +1,9 @@
 from app import app, render_template, redirect, request
 import requests
-from urllib.parse import unquote
+
+headers = {
+    'Accept': 'application/json'  # ou 'application/xml'
+}
 
 @app.route("/")
 def index():
@@ -9,7 +12,7 @@ def index():
         url = f"http://127.0.0.1:8080/?search={search}"
     else:
         url = "http://127.0.0.1:8080/"
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     dados = response.json()
     return render_template("index.html", criar=dados["criar"] , artigos=dados["artigos"])
 
@@ -24,7 +27,7 @@ def criar(url):
     
 @app.route("/ver/<int:id>/<path:url>", methods=["GET"])
 def ver(id, url):
-    response = requests.get(url)
+    response = requests.get(url, headers=headers)
     dados = response.json()
     dados["artigo"]["id"] = id
     return render_template("ver.html", dados=dados)

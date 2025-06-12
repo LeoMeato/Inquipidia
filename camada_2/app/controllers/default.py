@@ -26,7 +26,11 @@ def artigo(id=None):
         artigo = Article.query.get_or_404(id)
         dados = {}
         dados["artigo"] = {"title": artigo.title, "description": artigo.description, "content": artigo.content, "url": f"http://127.0.0.1:8080/artigo/{artigo.id}"}
-        return jsonify(dados)
+        accept = request.headers.get('Accept', '')
+        if not accept or 'application/json' in accept:
+            return jsonify(dados)
+        else:
+            return Response("Formato não suportado", status=406)
     if request.method == "PUT":
         dados = request.get_json()
         title = dados.get("title")
