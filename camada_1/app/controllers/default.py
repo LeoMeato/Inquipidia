@@ -2,7 +2,7 @@ from app import app, render_template, redirect, request
 import requests
 
 headers = {
-    'Accept': 'application/json'  # ou 'application/xml'
+    'Accept': 'application/json'
 }
 
 @app.route("/")

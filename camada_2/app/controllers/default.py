@@ -1,7 +1,5 @@
 from app import *
 from app.models.tables import *
-from urllib.parse import quote
-
 
 @app.route("/")
 def index():
