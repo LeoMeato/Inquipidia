@@ -14,7 +14,11 @@ def index():
     dados = {}
     dados["criar"] = {"url": "http://127.0.0.1:8080/artigo"}
     dados["artigos"] = f_artigos
-    return jsonify(dados)
+    accept = request.headers.get('Accept', '')
+    if not accept or 'application/json' in accept:
+        return jsonify(dados)
+    else:
+        return Response("Formato não suportado", status=406)
 
 
 @app.route("/artigo/<int:id>", methods=["GET", "DELETE", "PUT"])
