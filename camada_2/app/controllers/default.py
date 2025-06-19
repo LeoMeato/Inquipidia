@@ -54,7 +54,6 @@ def artigo(id=None):
         db.session.commit()
         return jsonify({})
     if request.method == "DELETE":
-        print("id")
         artigo = Article.query.get_or_404(id)
         db.session.delete(artigo)
         db.session.commit()
